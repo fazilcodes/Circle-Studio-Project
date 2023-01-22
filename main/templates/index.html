@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram</title>
+    <link rel="stylesheet" href="{% static 'css/frontend.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <!-- navbar-start -->
+
+    <nav class="navbar">
+        <div class="nav-wrapper">
+            <img src="{% static 'Image/Circle-removebg-preview.png' %}" class="brand-img" alt="">
+            <input type="text" class="search-box" placeholder="search">
+            <div class="nav-items">
+                <a href=""><i class="fa-solid fa-house icon"></i></a>
+                <a href=""><i class="fa-sharp fa-solid fa-message icon"></i></a>
+                <a href=""><i class="fa-sharp fa-solid fa-plus icon"></i></a>
+                <a href=""><i class="fa-solid fa-heart icon"></i></a>
+                <div class="icon user-profile"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- navbar-end -->
+
+    <!-- Section -->
+
+    <section class="main">
+        <div class="wrapper">
+            <div class="left-col">
+                <div class="status-wrapper">
+                    <div class="status-card">
+                        <div class="profile-pic"><img src="{% static 'Image/seth-doyle-vmBik4xv27s-unsplash.jpg' %}" alt=""></div>
+                        <p class="username">Fazil-Thekkan</p>
+                    </div>
+                    <div class="status-card">
+                        <div class="profile-pic"><img src="{% static 'Image/seth-doyle-vmBik4xv27s-unsplash.jpg' %}" alt=""></div>
+                        <p class="username">Fazil-Thekkan</p>
+                    </div>
+                    <div class="status-card">
+                        <div class="profile-pic"><img src="{% static 'Image/seth-doyle-vmBik4xv27s-unsplash.jpg' %}" alt=""></div>
+                        <p class="username">Fazil-Thekkan</p>
+                    </div>
+                    <div class="status-card">
+                        <div class="profile-pic"><img src="{% static 'Image/seth-doyle-vmBik4xv27s-unsplash.jpg' %}" alt=""></div>
+                        <p class="username">Fazil-Thekkan</p>
+                    </div>
+                    <div class="status-card">
+                        <div class="profile-pic"><img src="{% static 'Image/seth-doyle-vmBik4xv27s-unsplash.jpg' %}" alt=""></div>
+                        <p class="username">Fazil-Thekkan</p>
+                    </div>
+                    <div class="status-card">
+                        <div class="profile-pic"><img src="{% static 'Image/seth-doyle-vmBik4xv27s-unsplash.jpg' %}" alt=""></div>
+                        <p class="username">Fazil-Thekkan</p>
+                    </div>
+                </div>
+                <div class="post">
+                    <div class="info">
+                        <div class="user">
+                            <div class="profile-pic"><img src="{% static 'Image/seth-doyle-vmBik4xv27s-unsplash.jpg' %}" alt=""></div>
+                            <p class="username">Fazil</p>
+                        </div>
+                        <a href=""><i class="fa-sharp fa-solid fa-caret-down options"></i></a>
+                    </div>
+                    <img src="{% static 'Image/seth-doyle-vmBik4xv27s-unsplash.jpg' %}" class="post-image" alt="">
+                    <div class="post-content">
+                        <div class="reaction-wrapper">
+                            <i class="fa-regular fa-heart"></i>
+                            <i class="fa-regular fa-comment"></i>
+                            <i class="fa-regular fa-paper-plane"></i>
+                            <i class="fa-regular fa-bookmark save"></i>
+                        </div>
+                        <p class="likes">456 Likes</p>
+                        <p class="description"><span>Fazil</span>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia, quo.</p>
+                        <p class="post-time">1 hour</p>
+                    </div>
+                    <div class="comment-wrapper">
+                        <i class="fa-sharp fa-solid fa-face-smile"></i>
+                        <input type="text" class="comment-box" placeholder="Add a comment">
+                        <button class="comment-btn">Comment</button>
+                    </div>
+                </div>
+                <div class="post">
+                    <div class="info">
+                        <div class="user">
+                            <div class="profile-pic"><img src="{% static 'Image/seth-doyle-vmBik4xv27s-unsplash.jpg' %}" alt=""></div>
+                            <p class="username">Fazil</p>
+                        </div>
+                        <a href=""><i class="fa-sharp fa-solid fa-caret-down options"></i></a>
+                    </div>
+                    <img src="{% static 'Image/seth-doyle-vmBik4xv27s-unsplash.jpg' %}" class="post-image" alt="">
+                    <div class="post-content">
+                        <div class="reaction-wrapper">
+                            <i class="fa-regular fa-heart"></i>
+                            <i class="fa-regular fa-comment"></i>
+                            <i class="fa-regular fa-paper-plane"></i>
+                            <i class="fa-regular fa-bookmark save"></i>
+                        </div>
+                        <p class="likes">456 Likes</p>
+                        <p class="description"><span>Fazil</span>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia, quo.</p>
+                        <p class="post-time">1 hour</p>
+                    </div>
+                    <div class="comment-wrapper">
+                        <i class="fa-sharp fa-solid fa-face-smile"></i>
+                        <input type="text" class="comment-box" placeholder="Add a comment">
+                        <button class="comment-btn">Comment</button>
+                    </div>
+                </div>
+                <div class="post">
+                    <div class="info">
+                        <div class="user">
+                            <div class="profile-pic"><img src="{% static 'Image/seth-doyle-vmBik4xv27s-unsplash.jpg' %}" alt=""></div>
+                            <p class="username">Fazil</p>
+                        </div>
+                        <a href=""><i class="fa-sharp fa-solid fa-caret-down options"></i></a>
+                    </div>
+                    <img src="{% static 'Image/seth-doyle-vmBik4xv27s-unsplash.jpg' %}" class="post-image" alt="">
+                    <div class="post-content">
+                        <div class="reaction-wrapper">
+                            <i class="fa-regular fa-heart"></i>
+                            <i class="fa-regular fa-comment"></i>
+                            <i class="fa-regular fa-paper-plane"></i>
+                            <i class="fa-regular fa-bookmark save"></i>
+                        </div>
+                        <p class="likes">456 Likes</p>
+                        <p class="description"><span>Fazil</span>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia, quo.</p>
+                        <p class="post-time">1 hour</p>
+                    </div>
+                    <div class="comment-wrapper">
+                        <i class="fa-sharp fa-solid fa-face-smile"></i>
+                        <input type="text" class="comment-box" placeholder="Add a comment">
+                        <button class="comment-btn">Comment</button>
+                    </div>
+                </div>
+            </div>
+            <div class="right-col">
+                <div class="profile-card">
+                    <div class="profile-pic">
+                        <img src="{% static 'Image/seth-doyle-vmBik4xv27s-unsplash.jpg' %}" alt="">
+                    </div>
+                    <div>
+                        <p class="username">Fazil</p>
+                        <p class="sub-text">Fazil Thekkan</p>
+                    </div>
+                    <button class="action-btn">Switch</button>
+                </div>
+                <p class="suggestion-text">Suggestions for you</p>
+                <div class="profile-card">
+                    <div class="profile-pic">
+                        <img src="{% static 'Image/seth-doyle-vmBik4xv27s-unsplash.jpg' %}" alt="">
+                    </div>
+                    <div>
+                        <p class="username">Fazil</p>
+                        <p class="sub-text">Fazil Thekkan</p>
+                    </div>
+                    <button class="action-btn">Follow</button>
+                </div>
+                <div class="profile-card">
+                    <div class="profile-pic">
+                        <img src="{% static 'Image/seth-doyle-vmBik4xv27s-unsplash.jpg' %}" alt="">
+                    </div>
+                    <div>
+                        <p class="username">Fazil</p>
+                        <p class="sub-text">Fazil Thekkan</p>
+                    </div>
+                    <button class="action-btn">Follow</button>
+                </div>
+                <div class="profile-card">
+                    <div class="profile-pic">
+                        <img src="{% static 'Image/seth-doyle-vmBik4xv27s-unsplash.jpg' %}" alt="">
+                    </div>
+                    <div>
+                        <p class="username">Fazil</p>
+                        <p class="sub-text">Fazil Thekkan</p>
+                    </div>
+                    <button class="action-btn">Follow</button>
+                </div>
+                <div class="profile-card">
+                    <div class="profile-pic">
+                        <img src="{% static 'Image/seth-doyle-vmBik4xv27s-unsplash.jpg' %}" alt="">
+                    </div>
+                    <div>
+                        <p class="username">Fazil</p>
+                        <p class="sub-text">Fazil Thekkan</p>
+                    </div>
+                    <button class="action-btn">Follow</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section-End -->
+</body>
+</html>
