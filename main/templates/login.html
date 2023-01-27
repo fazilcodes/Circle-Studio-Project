@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Amita&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+    <title>Sign up &bull; Circle-Studio</title>
+  </head>
+
+  <body>
+    <div id="SignupContainer">
+      <div class="signupBox">
+        <header>
+          <h2>Circle Studio</h2>
+          <p>Sign up to see photos and videos from your friends.</p>
+          <button><i class="fab fa-facebook"></i>Log in with Facebook</button>
+        </header>
+        <div class="seperator">
+          <hr>OR
+          <hr>
+        </div>
+        <form action="#">
+          <input type="text" name="username" placeholder="Username">
+          <input type="email" name="email" placeholder="Email">
+          <input type="password" name="password" placeholder="Password">
+          <input type="password" name="confirmpassword" placeholder="Confirm Password">
+          <button type="submit">Sign up</button>
+        </form>
+        <footer>
+          <p>
+            By signing up, you agree to our <a href="#">Terms , Data Policy</a> and <a href="#">Cookies Policy</a> .
+          </p>
+        </footer>
+      </div>
+    </div>
+    <div id="BottomContainer">
+      <p>
+        Have an account? <a href="{% url 'Signin' %}">Log in</a>
+      </p>
+    </div>
+    <div id="AppsContainer">
+      <p>Get the app.</p>
+      <img src="https://i.postimg.cc/Vkm7D9Xd/appstore.png" alt="appstore">
+      <img src="https://i.postimg.cc/R00gzMsm/playstore.png" alt="playstore">
+    </div>
+    <div id="LastContainer">
+      <div class="links">
+        <a href="#">ABOUT</a>
+        <a href="#">HELP</a>
+        <a href="#">PRESS</a>
+        <a href="#">API</a>
+        <a href="#">JOBS</a>
+        <a href="#">PRIVACY</a>
+        <a href="#">TERMS</a>
+        <a href="#">LANGUAGE</a>
+      </div>
+      <div class="copyright">
+        <p>&copy; @fazil Project Circle-studio</p>
+      </div>
+    </div>
+  </body>
+
+</html>
