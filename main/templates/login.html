@@ -22,13 +22,24 @@
           <hr>OR
           <hr>
         </div>
-        <form action="#">
+        <form action="" method="post">
+          {% csrf_token %}
           <input type="text" name="username" placeholder="Username">
           <input type="email" name="email" placeholder="Email">
           <input type="password" name="password" placeholder="Password">
-          <input type="password" name="confirmpassword" placeholder="Confirm Password">
+          <input type="password" name="password2" placeholder="Confirm Password">
           <button type="submit">Sign up</button>
         </form>
+        <div>
+          <style>
+            h5 {
+              color: red;
+            }
+          </style>
+          {% for message in messages %}
+          <h5>{{ message }}</h5>
+          {% endfor %}
+        </div>
         <footer>
           <p>
             By signing up, you agree to our <a href="#">Terms , Data Policy</a> and <a href="#">Cookies Policy</a> .
@@ -38,7 +49,7 @@
     </div>
     <div id="BottomContainer">
       <p>
-        Have an account? <a href="{% url 'Signin' %}">Log in</a>
+        Have an account? <a href="/signin">Log in</a>
       </p>
     </div>
     <div id="AppsContainer">
