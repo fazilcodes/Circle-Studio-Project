@@ -20,10 +20,10 @@
             <div class="nav-items">
                 <a href=""><i class="fa-solid fa-house icon"></i></a>
                 <a href=""><i class="fa-sharp fa-solid fa-message icon"></i></a>
-                <a href=""><i class="fa-sharp fa-solid fa-plus icon"></i></a>
+                <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" type="button"><i class="fa-sharp fa-solid fa-plus icon"></i></a>
                 <a href=""><i class="fa-solid fa-heart icon"></i></a>
                 
-                <img class="icon user-profile" href="#" data-bs-toggle="dropdown" aria-expanded="false"></img>      
+                <img class="icon user-profile" src="{{ user_profile.profileimg.url }}" data-bs-toggle="dropdown" aria-expanded="false"></img>      
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#">Profile</a></li>
                     <li><a class="dropdown-item" href="/settings">Settings</a></li>
@@ -163,10 +163,7 @@
                     <div class="profile-pic">
                         <img src="{% static 'Image/seth-doyle-vmBik4xv27s-unsplash.jpg' %}" alt="">
                     </div>
-                    <div>
-                        <p class="username">Fazil</p>
-                        <p class="sub-text">Fazil Thekkan</p>
-                    </div>
+                    <p class="username" style="margin: 0;">Fazil</p>
                     <button class="action-btn">Follow</button>
                 </div>
                 <div class="profile-card">
@@ -204,6 +201,35 @@
     </section>
 
     <!-- Section-End -->
+
+    <!-- Upload post Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">New post</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form action="{% url 'Upload' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">upload</label>
+                  <input type="file" class="form-control" id="recipient-name" name="image">
+                </div>
+                <div class="mb-3">
+                  <label for="message-text" class="col-form-label">Caption</label>
+                  <textarea class="form-control" id="message-text" name="caption"></textarea>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Upload</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
 

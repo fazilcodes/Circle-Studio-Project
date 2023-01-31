@@ -9,4 +9,5 @@ urlpatterns = [
     path('signin/', views.Signin, name='Signin'),
     path('signup/', views.Signup, name='Signup'),
     path('logout/', views.Logout, name='Logout'),
+    path('upload/', views.Upload, name='Upload')
 ]

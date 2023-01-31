@@ -5,14 +5,16 @@ from django.contrib import auth
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-from .models import ProfileDB
+from .models import ProfileDB,PostDB
 
 # Create your views here.
 
 
 @login_required(login_url='Signin')
 def Index(req):
-    return render(req, 'index.html')
+    user_object = User.objects.get(username=req.user.username)
+    user_profile = ProfileDB.objects.get(user=user_object)
+    return render(req, 'index.html', {'user_profile': user_profile})
 
 
 def Signin(req):
@@ -98,3 +100,16 @@ def Settings(req):
 
         return redirect('Settings')
     return render(req, 'settings.html', {'user_profile': user_profile})
+
+@login_required(login_url='Signin')
+def Upload(req):
+    if req.method == 'POST':
+        user = req.user.username
+        image = req.FILES['image']
+        caption = req.POST.get('caption')
+
+        new_post = PostDB.objects.create(user=user, image=image, caption=caption)
+        new_post.save()
+        return redirect('/')
+    else:
+        return redirect('/')
