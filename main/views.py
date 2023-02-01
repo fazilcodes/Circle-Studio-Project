@@ -14,7 +14,9 @@ from .models import ProfileDB,PostDB
 def Index(req):
     user_object = User.objects.get(username=req.user.username)
     user_profile = ProfileDB.objects.get(user=user_object)
-    return render(req, 'index.html', {'user_profile': user_profile})
+
+    post_feed = PostDB.objects.all()
+    return render(req, 'index.html', {'user_profile': user_profile, 'posts': post_feed})
 
 
 def Signin(req):
@@ -113,3 +115,4 @@ def Upload(req):
         return redirect('/')
     else:
         return redirect('/')
+
