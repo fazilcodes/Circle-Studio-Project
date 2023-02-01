@@ -25,6 +25,7 @@
                 
                 <img class="icon user-profile" src="{{ user_profile.profileimg.url }}" data-bs-toggle="dropdown" aria-expanded="false"></img>      
                 <ul class="dropdown-menu">
+                    <li class="dropdown-item">Welcome @{{ user_profile.user }}</li>
                     <li><a class="dropdown-item" href="#">Profile</a></li>
                     <li><a class="dropdown-item" href="/settings">Settings</a></li>
                     <li><a class="dropdown-item" href="/logout">Logout</a></li>
@@ -75,17 +76,23 @@
                             <div class="profile-pic"><img src="{{ user_profile.profileimg.url }}" alt=""></div>
                             <p class="username"><a href="" style="color: black; cursor: pointer; text-decoration: none;">@{{ post.user }}</a></p>
                         </div>
-                        <a href=""><i class="fa-sharp fa-solid fa-caret-down options"></i></a>
+                        <i class="fa-sharp fa-solid fa-caret-down options"></i>
                     </div>
                     <img src="{{ post.image.url }}" class="post-image" alt="">
                     <div class="post-content">
                         <div class="reaction-wrapper">
-                            <i class="fa-regular fa-heart"></i>
+                            <a href="/like-post?post_id={{ post.id }}" onclick="change()" id="likebtn"  style="color: black;" ><i class="fa-solid fa-heart"></i></a>
                             <i class="fa-regular fa-comment"></i>
                             <i class="fa-regular fa-paper-plane"></i>
                             <i class="fa-regular fa-bookmark save"></i>
                         </div>
-                        <p class="likes">{{ post.no_of_likes }}</p>
+                        {% if post.no_of_likes == 0 %}
+                        <p class="likes">No Likes Yet</p>
+                        {% elif post.no_of_likes == 1 %}
+                        <p class="likes">{{ post.no_of_likes }} Person Liked</p>
+                        {% else %}
+                        <p class="likes">{{ post.no_of_likes }} Likes</p>
+                        {% endif %}
                         <p class="description"><a href="" style="color: black; cursor: pointer; text-decoration: none;"><span>{{ post.user }}</span></a>{{ post.caption }}</p>
                         <p class="post-time">{{ post.crated_at }}</p>
                     </div>
@@ -151,5 +158,11 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        
+        const change = () => {
+            document.getElementById('likebtn').style.color='red';    
+        }
+    </script>
 </body>
 </html>
