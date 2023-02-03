@@ -136,3 +136,20 @@ def like_post(req):
         post.no_of_likes -= 1
         post.save()
         return redirect('/') 
+
+
+def Profile(req, pk):
+    user_object = User.objects.get(username=pk)
+    profile_object = ProfileDB.objects.get(user=user_object)
+    post_object = PostDB.objects.filter(user=pk)
+    user_post_length = len(post_object)
+
+
+    context = {
+        'user': user_object,
+        'profile': profile_object,
+        'post': post_object,
+        'no_of_posts': user_post_length
+    }
+
+    return render(req, 'profile.html', context)

@@ -10,5 +10,6 @@ urlpatterns = [
     path('signup/', views.Signup, name='Signup'),
     path('logout/', views.Logout, name='Logout'),
     path('upload/', views.Upload, name='Upload'),
-    path('like-post/', views.like_post, name='like-post')
+    path('like-post/', views.like_post, name='like-post'),
+    path('profile/<str:pk>', views.Profile, name='profile')
 ]
