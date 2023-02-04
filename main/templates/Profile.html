@@ -24,29 +24,51 @@
     
                 <div class="profile-user-settings">
     
-                    <h1 class="profile-user-name">{{ user.username }}</h1>
-    
-                    
-                    <button class="btn profile-edit-btn" style="padding: 0px 8px; background: rgb(0, 0, 0); color: #fafafa; border-radius: 3px; font-weight: 400;"">Follow</button>
-                    <button class="btn profile-edit-btn" style="padding: 0px 8px; background: rgb(0, 0, 0); color: #fafafa; border-radius: 3px; font-weight: 400;">Unfollow</button>
-                    <a href="" style="color: #000;"><i class="fa-solid fa-house" style="font-size: 22px; margin-left: 20px;"></i></a>
+                    <h1 class="profile-user-name">{{ user_object.username }}</h1>
+
+                    <form action="/follower" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        
+                        <input type="hidden" name="follow" value="{{ user.username }}" id="">
+                        <input type="hidden" name="user" value="{{ user_object.username }}" id="">
+
+                        {% if user_object.username == user.username %}
+                        <a href="/settings"><button type="button" class="btn profile-edit-btn" style="padding: 0px 8px; background: rgb(0, 0, 0); color: #fafafa; border-radius: 3px; font-weight: 400;">Settings</button></a>
+                        {% else %}
+                        <a type="submit"><button type="submit" class="btn profile-edit-btn" style="padding: 0px 8px; background: rgb(0, 0, 0); color: #fafafa; border-radius: 3px; font-weight: 400;">{{ button_text }}</button></a>
+                        {% endif %}
+                    </form>
+                        <a href=""><button class="btn profile-edit-btn" style="padding: 0px 8px; background: rgb(0, 0, 0); color: #fafafa; border-radius: 3px; font-weight: 400;">Message</button></a>
+                        <a href="/" style="color: #000;"><i class="fa-solid fa-house" style="font-size: 22px; margin-left: 20px;"></i></a>
                     
     
                 </div>
     
                 <div class="profile-stats">
-    
-                    <ul>
-                        {% if no_of_posts == 0 %}
-                        <li><span class="profile-stat-count">No Post</span> posts</li>
-                        {% elif no_of_posts == 1 %}
-                        <li><span class="profile-stat-count">{{ no_of_posts }}</span> post</li>
-                        {% else%}
-                        <li><span class="profile-stat-count">{{ no_of_posts }}</span> posts</li>
-                        {% endif %}
-                        <li><span class="profile-stat-count">188</span> followers</li>
-                        <li><span class="profile-stat-count">206</span> following</li>
-                    </ul>
+                    
+                        <ul>
+                            {% if no_of_posts == 0 %}
+                            <li><span class="profile-stat-count"></span>0 posts</li>
+                            {% elif no_of_posts == 1 %}
+                            <li><span class="profile-stat-count">{{ no_of_posts }}</span> post</li>
+                            {% else%}
+                            <li><span class="profile-stat-count">{{ no_of_posts }}</span> posts</li>
+                            {% endif %}
+
+                            {% if user_followers == 0 or user_followers == 1 %}
+                            <li><span class="profile-stat-count">{{ user_followers }}</span> follower</li>
+                            {% else %}
+                            <li><span class="profile-stat-count">{{ user_followers }}</span> followers</li>
+                            {% endif %}
+
+                            {% if user_following == 0 or user_following == 1 %}
+                            <li><span class="profile-stat-count">{{ user_following }}</span> following</li>
+                            {% else %}
+                            <li><span class="profile-stat-count">{{ user_following }}</span> followings</li>
+                            {% endif %}
+
+
+                        </ul>
     
                 </div>
     

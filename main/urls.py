@@ -11,5 +11,6 @@ urlpatterns = [
     path('logout/', views.Logout, name='Logout'),
     path('upload/', views.Upload, name='Upload'),
     path('like-post/', views.like_post, name='like-post'),
-    path('profile/<str:pk>', views.Profile, name='profile')
+    path('profile/<str:pk>', views.Profile, name='profile'),
+    path('follower', views.Follow, name='Follow')
 ]

@@ -5,7 +5,7 @@ from django.contrib import auth
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-from .models import ProfileDB, PostDB, LikepostDB
+from .models import ProfileDB, PostDB, LikepostDB, FollowerDB
 
 # Create your views here.
 
@@ -137,19 +137,50 @@ def like_post(req):
         post.save()
         return redirect('/') 
 
-
+@login_required(login_url='Signin')
 def Profile(req, pk):
     user_object = User.objects.get(username=pk)
     profile_object = ProfileDB.objects.get(user=user_object)
     post_object = PostDB.objects.filter(user=pk)
     user_post_length = len(post_object)
 
+    follower = req.user.username
+    user = pk
+
+    if FollowerDB.objects.filter(follower=follower, user=user).first():
+        button_text = 'Unfollow'
+    else:
+        button_text = 'Follow'
+
+    user_followers = len(FollowerDB.objects.filter(user=pk))
+    user_following = len(FollowerDB.objects.filter(follower=pk))
 
     context = {
-        'user': user_object,
+        'user_object': user_object,
         'profile': profile_object,
         'post': post_object,
-        'no_of_posts': user_post_length
+        'no_of_posts': user_post_length,
+        'button_text': button_text,
+        'user_followers': user_followers,
+        'user_following': user_following
     }
 
     return render(req, 'profile.html', context)
+
+@login_required(login_url='Signin')
+def Follow(req):
+    if req.method == 'POST':
+        follower = req.POST.get('follow')
+        user = req.POST.get('user')
+
+        if FollowerDB.objects.filter(follower=follower, user=user).first():
+            delete_follower = FollowerDB.objects.get(follower=follower, user=user)
+            delete_follower.delete()
+            return redirect('profile/'+user)
+        else:
+            new_follower = FollowerDB.objects.create(follower=follower, user=user)
+            new_follower.save()
+            return redirect('profile/'+user)
+
+    else:
+        return redirect('/')

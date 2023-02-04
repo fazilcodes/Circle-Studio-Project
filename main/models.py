@@ -37,3 +37,11 @@ class LikepostDB(models.Model):
 
     def __str__(self):
         return self.username
+
+
+class FollowerDB(models.Model):
+    follower = models.CharField(max_length=100, null=True)
+    user = models.CharField(max_length=100, null=True)
+
+    def __str__(self):
+        return self.user
