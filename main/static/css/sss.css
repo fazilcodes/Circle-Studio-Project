@@ -1,0 +1,79 @@
+.text {
+    padding: 50px  0px 10px 300px;
+  }
+  .border {
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    width: 700px;
+    height: auto;
+    position: relative;
+    left: 300px;
+  }
+  .user-suggestions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 6px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+  }
+  /* .image {
+    width: 44px;
+    height: 44px;
+    background-image: url('https://yt3.ggpht.com/a/AGF-l78QGTW3gMAN3s_devNGhlzjBO9eCRPGTg0iUQ=s900-c-k-c0xffffffff-no-rj-mo'); 
+    border-radius: 50%; 
+    background-size: cover; 
+    background-position: center;
+    position: relative; left: 8px;
+  } */
+  .info {
+    flex-grow: 1;
+    padding: 0px 15px;
+  }
+  .info .nick-name {
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .info a:link {
+    text-decoration: none;
+    color: black;
+  }
+  .info a:hover {
+    text-decoration: none;
+    color: black;
+  }
+  .info a:visited {
+    text-decoration: none;
+    color: black;
+  }
+  /* .icon {
+    height: 12px;
+    width: 12px;
+    background-image:url(https://www.instagram.com/static/bundles/es6/sprite_core_4f48d3d2062b.png/4f48d3d2062b.png);
+    background-repeat: no-repeat;
+    background-position: -302px -337px;
+    margin: -15px 0px 0px 85px;
+  } */
+  .info .name {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgb(153, 153, 153);
+  }
+  .info .type {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgb(153, 153, 153);
+  }
+  .button {
+    padding-right: 15px;
+  }
+  .button input {
+    background-color: #3897f0;
+    border: 1px solid #3897f0;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 14px;
+    padding: 5px 9px;
+  }
+  

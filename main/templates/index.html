@@ -14,11 +14,14 @@
     <!-- navbar-start -->
 
     <nav class="navbar">
-        <div class="nav-wrapper">
+        <div class="nav-wrapper">    
             <img src="{% static 'Image/Circle-removebg-preview.png' %}" class="brand-img" alt="">
-            <input type="text" class="search-box" placeholder="search">
+            <form action="/search" method="post" style="margin-bottom: 25px;">
+                {% csrf_token %}
+                <input type="text" name="username" class="search-box" placeholder="search"><button style="position: absolute; top: 25; right: 480px; border: none; background: transparent; text-transform: none;"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
             <div class="nav-items">
-                <a href=""><i class="fa-solid fa-house icon"></i></a>
+                <a href="/"><i class="fa-solid fa-house icon"></i></a>
                 <a href=""><i class="fa-sharp fa-solid fa-message icon"></i></a>
                 <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" type="button"><i class="fa-sharp fa-solid fa-plus icon"></i></a>
                 <a href=""><i class="fa-solid fa-heart icon"></i></a>
@@ -26,12 +29,11 @@
                 <img class="icon user-profile" src="{{ user_profile.profileimg.url }}" data-bs-toggle="dropdown" aria-expanded="false"></img>      
                 <ul class="dropdown-menu">
                     <li class="dropdown-item">Welcome @{{ user_profile.user }}</li>
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><a class="dropdown-item" href="/profile/{{ user_profile.user }}">Profile</a></li>
                     <li><a class="dropdown-item" href="/settings">Settings</a></li>
                     <li><a class="dropdown-item" href="/logout">Logout</a></li>
                 </ul>
 
-                </div>
             </div>
         </div>
     </nav>
@@ -74,7 +76,7 @@
                     <div class="info">
                         <div class="user">
                             <div class="profile-pic"><img src="{{ user_profile.profileimg.url }}" alt=""></div>
-                            <p class="username"><a href="" style="color: black; cursor: pointer; text-decoration: none;">@{{ post.user }}</a></p>
+                            <p class="username"><a href="/profile/{{ post.user }}" style="color: black; cursor: pointer; text-decoration: none;">@{{ post.user }}</a></p>
                         </div>
                         <i class="fa-sharp fa-solid fa-caret-down options"></i>
                     </div>
@@ -84,7 +86,7 @@
                             <a href="/like-post?post_id={{ post.id }}" onclick="change()" id="likebtn"  style="color: black;" ><i class="fa-solid fa-heart"></i></a>
                             <i class="fa-regular fa-comment"></i>
                             <i class="fa-regular fa-paper-plane"></i>
-                            <i class="fa-regular fa-bookmark save"></i>
+                            <a href="{{ post.image.url }}" download style="color: black;"><i class="fa-solid fa-download"></i></a>
                         </div>
                         {% if post.no_of_likes == 0 %}
                         <p class="likes">No Likes Yet</p>
@@ -109,8 +111,8 @@
                     <div class="profile-pic">
                         <img src="{{ user_profile.profileimg.url }}" alt="">
                     </div>
-                    <p class="username" style="margin: 0;">{{ user_profile.user }}</p>
-                    <button class="action-btn" style="padding: 0px 8px; background: rgb(0, 0, 0); color: #fafafa; border-radius: 3px; font-weight: 400;">Profile</button>
+                    <p class="username" style="margin: 0;">{{ user_profile.user }}</p>&nbsp;
+                    <a href="/profile/{{ user_profile.user }}" style="padding: 0px 7px; background: rgb(0, 0, 0); color: #fafafa; border-radius: 3px; font-weight: 300; font-size: 12px; margin-left: 5px; text-decoration: none;">Profile</a>
                 </div>
                 <p class="suggestion-text">Suggestions for you</p>
                 <div class="profile-card">

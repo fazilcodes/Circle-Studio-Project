@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circle-Studio</title>
+    <link rel="stylesheet" href="{% static 'css/sss.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/frontend.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'css/sear.css' %}">
+</head>
+<body>
+    <!-- navbar-start -->
+
+    <nav class="navbar">
+        <div class="nav-wrapper">    
+            <img src="{% static 'Image/Circle-removebg-preview.png' %}" class="brand-img" alt="">
+            <form action="/search" method="post" style="margin-bottom: 25px;">
+                {% csrf_token %}
+                <input type="text" name="username" class="search-box" placeholder="search"><button style="position: absolute; top: 25; right: 480px; border: none; background: transparent; text-transform: none;"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+            <div class="nav-items">
+                <a href="/"><i class="fa-solid fa-house icon"></i></a>
+                <a href=""><i class="fa-sharp fa-solid fa-message icon"></i></a>
+                <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" type="button"><i class="fa-sharp fa-solid fa-plus icon"></i></a>
+                <a href=""><i class="fa-solid fa-heart icon"></i></a>
+                
+                <img class="icon user-profile" src="{{ user_profile.profileimg.url }}" data-bs-toggle="dropdown" aria-expanded="false"></img>      
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><a class="dropdown-item" href="/settings">Settings</a></li>
+                    <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- navbar-end -->
+
+    <!-- search User -->
+    <div class="user-suggestions-general" style="margin-top: 70px;">
+        <div class="text">Search Result</div>
+        <div class="border">
+          {% for user in user_profile_list %}  
+          <div class="user-suggestions">
+            <div class="change-image">
+              <a href="">
+                <div class="image"></div>
+              </a>
+            </div>
+            <div class="info" style="display: flex; align-items: center; ">
+                <img src="{{ user.profileimg.url }}" alt="" style="width: 50px; height: 50px;">
+                <a href="/profile/{{ user.user }}" style="color: black; text-decoration: none;"><h5 style="margin-right: 100px;">@{{ user.user }}</h3></a>
+                <h6 style="margin-right: 180px;">{{ user.location }}</h4>
+            </div>
+            <div class="button" >
+              <a href="/profile/{{ user.user }}" style="color: white; background-color: black; padding: 3px 8px; border-radius: 5px; font-size: 12px; border: none; text-decoration: none;">Profile</a>
+            </div>
+          </div>
+          {% endfor %}
+    
+        </div>
+      </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        
+        const change = () => {
+            document.getElementById('likebtn').style.color='red';    
+        }
+    </script>
+</body>
+</html>

@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from itertools import chain
 
 from .models import ProfileDB, PostDB, LikepostDB, FollowerDB
 
@@ -15,8 +16,21 @@ def Index(req):
     user_object = User.objects.get(username=req.user.username)
     user_profile = ProfileDB.objects.get(user=user_object)
 
-    post_feed = PostDB.objects.all()
-    return render(req, 'index.html', {'user_profile': user_profile, 'posts': post_feed})
+    user_following_list = []
+    feed = []
+
+    user_following = FollowerDB.objects.filter(follower=req.user.username)
+
+    for users in user_following:
+        user_following_list.append(users.user)
+
+    for usernames in user_following_list:
+        feed_list = PostDB.objects.filter(user=usernames)
+        feed.append(feed_list)
+
+    feed_list = list(chain(*feed))
+
+    return render(req, 'index.html', {'user_profile': user_profile, 'posts': feed_list})
 
 
 def Signin(req):
@@ -184,3 +198,26 @@ def Follow(req):
 
     else:
         return redirect('/')
+
+@login_required(login_url='Signin')
+def Search(req):
+    user_object = User.objects.get(username = req.user.username)
+    user_profile = ProfileDB.objects.get(user=user_object)
+
+    if req.method == 'POST':
+        username = req.POST.get('username')
+        username_object = User.objects.filter(username__contains=username)
+
+        username_profile = []
+        username_profile_list = []
+
+        for users in username_object:
+            username_profile.append(users.id)
+        
+        for ids in username_profile:
+            profile_lists = ProfileDB.objects.filter(id_user=ids)
+            username_profile_list.append(profile_lists)
+        
+        username_profile_list = list(chain(*username_profile_list))
+
+    return render(req, 'search.html', {'user_profile': user_profile, 'user_profile_list': username_profile_list})
