@@ -5,6 +5,7 @@ from django.contrib import auth
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from itertools import chain
+import random
 
 from .models import ProfileDB, PostDB, LikepostDB, FollowerDB
 
@@ -29,8 +30,33 @@ def Index(req):
         feed.append(feed_list)
 
     feed_list = list(chain(*feed))
+    random.shuffle(feed_list)
 
-    return render(req, 'index.html', {'user_profile': user_profile, 'posts': feed_list})
+    all_users = User.objects.all()
+    user_following_all = []
+
+    for user in user_following:
+        user_list = User.objects.get(username=user.user)
+        user_following_all.append(user_list)
+
+    new_suggestions_list = [x for x in list(all_users) if (x not in list(user_following_all))]
+    current_user = User.objects.filter(username=req.user.username)
+    final_suggestions = [x for x in list(new_suggestions_list) if (x not in list(current_user))]
+    random.shuffle(final_suggestions)
+
+    username_profile = []
+    username_profile_list = []
+
+    for users in final_suggestions:
+        username_profile.append(users.id)
+
+    for ids in username_profile:
+        profile_lists = ProfileDB.objects.filter(id_user = ids)
+        username_profile_list.append(profile_lists)
+    
+    suggestions_username_profile_list = list(chain(*username_profile_list))
+
+    return render(req, 'index.html', {'user_profile': user_profile, 'posts': feed_list, 'suggestions': suggestions_username_profile_list[:4]})
 
 
 def Signin(req):
@@ -114,7 +140,7 @@ def Settings(req):
             user_profile.location = location
             user_profile.save()
 
-        return redirect('Settings')
+        return redirect('/')
     return render(req, 'settings.html', {'user_profile': user_profile})
 
 @login_required(login_url='Signin')
@@ -123,6 +149,7 @@ def Upload(req):
         user = req.user.username
         image = req.FILES['image']
         caption = req.POST.get('caption')
+        
 
         new_post = PostDB.objects.create(user=user, image=image, caption=caption)
         new_post.save()

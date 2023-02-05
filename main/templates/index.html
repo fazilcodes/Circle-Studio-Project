@@ -45,37 +45,20 @@
     <section class="main">
         <div class="wrapper">
             <div class="left-col">
-                <div class="status-wrapper">
-                    <div class="status-card">
-                        <div class="profile-pic"><img src="{% static 'Image/seth-doyle-vmBik4xv27s-unsplash.jpg' %}" alt=""></div>
-                        <p class="username">Fazil-Thekkan</p>
+                <h5>Recent Posts</h5>
+                <div class="status-wrapper" style="box-shadow: 2px 5px 8px rgba(0, 0, 0, 0.4);">
+                    {% for post in posts %}
+                    <div class="status-card" style="margin-top: 5px;">
+                        <div class="profile-pic"><img src="{{ post.image.url }}" alt=""></div>
+                        <a href="/profile/{{ post.user }}" style="text-decoration: none;"><p class="username">{{ post.user }}</p></a>
                     </div>
-                    <div class="status-card">
-                        <div class="profile-pic"><img src="{% static 'Image/seth-doyle-vmBik4xv27s-unsplash.jpg' %}" alt=""></div>
-                        <p class="username">Fazil-Thekkan</p>
-                    </div>
-                    <div class="status-card">
-                        <div class="profile-pic"><img src="{% static 'Image/seth-doyle-vmBik4xv27s-unsplash.jpg' %}" alt=""></div>
-                        <p class="username">Fazil-Thekkan</p>
-                    </div>
-                    <div class="status-card">
-                        <div class="profile-pic"><img src="{% static 'Image/seth-doyle-vmBik4xv27s-unsplash.jpg' %}" alt=""></div>
-                        <p class="username">Fazil-Thekkan</p>
-                    </div>
-                    <div class="status-card">
-                        <div class="profile-pic"><img src="{% static 'Image/seth-doyle-vmBik4xv27s-unsplash.jpg' %}" alt=""></div>
-                        <p class="username">Fazil-Thekkan</p>
-                    </div>
-                    <div class="status-card">
-                        <div class="profile-pic"><img src="{% static 'Image/seth-doyle-vmBik4xv27s-unsplash.jpg' %}" alt=""></div>
-                        <p class="username">Fazil-Thekkan</p>
-                    </div>
+                    {% endfor %}
                 </div>
                 {% for post in posts reversed %}
                 <div class="post">
                     <div class="info">
                         <div class="user">
-                            <div class="profile-pic"><img src="{{ user_profile.profileimg.url }}" alt=""></div>
+                            <div class="profile-pic"><img src="{{ post.image.url }}" alt=""></div>
                             <p class="username"><a href="/profile/{{ post.user }}" style="color: black; cursor: pointer; text-decoration: none;">@{{ post.user }}</a></p>
                         </div>
                         <i class="fa-sharp fa-solid fa-caret-down options"></i>
@@ -96,7 +79,7 @@
                         <p class="likes">{{ post.no_of_likes }} Likes</p>
                         {% endif %}
                         <p class="description"><a href="" style="color: black; cursor: pointer; text-decoration: none;"><span>{{ post.user }}</span></a>{{ post.caption }}</p>
-                        <p class="post-time">{{ post.crated_at }}</p>
+                        <p class="post-time">{{ post.created_at }}</p>
                     </div>
                     <div class="comment-wrapper">
                         <i class="fa-sharp fa-solid fa-face-smile"></i>
@@ -106,21 +89,26 @@
                 </div>
                 {% endfor %}
             </div>
-            <div class="right-col">
-                <div class="profile-card">
-                    <div class="profile-pic">
-                        <img src="{{ user_profile.profileimg.url }}" alt="">
+            <div>
+                <h5>Activity</h5>
+                <div class="right-col" style="background-color: rgb(255, 255, 255); height: 400px; box-shadow: 2px 5px 8px rgba(0, 0, 0, 0.4);">
+                    <div class="profile-card">
+                        <div class="profile-pic">
+                            <img src="{{ user_profile.profileimg.url }}" alt="">
+                        </div>
+                        <p class="username" style="margin: 0;">{{ user_profile.user }}</p>&nbsp;
+                        <a href="/profile/{{ user_profile.user }}" style="padding: 0px 7px; background: rgb(0, 0, 0); color: #fafafa; border-radius: 3px; font-weight: 400; font-size: 12px; margin-left: 5px; text-decoration: none;">Profile</a>
                     </div>
-                    <p class="username" style="margin: 0;">{{ user_profile.user }}</p>&nbsp;
-                    <a href="/profile/{{ user_profile.user }}" style="padding: 0px 7px; background: rgb(0, 0, 0); color: #fafafa; border-radius: 3px; font-weight: 300; font-size: 12px; margin-left: 5px; text-decoration: none;">Profile</a>
-                </div>
-                <p class="suggestion-text">Suggestions for you</p>
-                <div class="profile-card">
-                    <div class="profile-pic">
-                        <img src="{% static 'Image/seth-doyle-vmBik4xv27s-unsplash.jpg' %}" alt="">
+                    <p class="suggestion-text" style="font-size: 15px;">Suggestions for you</p>
+                    {% for suggestion in suggestions %}
+                    <div class="profile-card" style="display: grid; grid-template-columns: 50px 100px 1fr;">
+                        <div class="profile-pic">
+                            <img src="{{ suggestion.profileimg.url }}" alt="">
+                        </div>
+                        <p class="username" style="margin: 0;">{{ suggestion.user }}</p>
+                        <a href="/profile/{{ suggestion.user }}" style="padding: 0px 7px; background: rgb(0, 0, 0); color: #fafafa; border-radius: 3px; font-weight: 400; font-size: 12px; margin-left: 5px; text-decoration: none;">View</a>
                     </div>
-                    <p class="username" style="margin: 0;">Fazil</p>
-                    <button class="action-btn" style="padding: 0px 8px; background: rgb(0, 0, 0); color: #fafafa; border-radius: 3px; font-weight: 400;">Follow</button>
+                    {% endfor %}
                 </div>
             </div>
         </div>
