@@ -94,10 +94,10 @@ def Signup(req):
                 user = User.objects.create_user(username=username, email=email, password=password)
                 user.save()
 
-                # after signing up redirecting the user to profile settings page
                 user_login = auth.authenticate(username=username, password=password)
                 auth.login(req, user_login)
 
+                # after signing up redirecting the user to profile settings page
                 # Creating a profile object for the newly created user
                 user_model = User.objects.get(username=username)
                 new_profile = ProfileDB.objects.create(user=user_model, id_user=user_model.id)

@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=D:\My Code\django\Circle Studio\myvenv
+set VIRTUAL_ENV=D:\Disk D\My Code\django\Circle Studio\myvenv
 
 if not defined PROMPT set PROMPT=$P$G
 

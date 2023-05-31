@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="D:\My Code\django\Circle Studio\myvenv"
+VIRTUAL_ENV="D:\Disk D\My Code\django\Circle Studio\myvenv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
